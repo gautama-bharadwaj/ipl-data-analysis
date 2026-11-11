@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IPL Data Explorer</title>
+  <meta name="description" content="Explore IPL batting and bowling trends by team, ground and player, 2008 to 2026.">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a78d6'/%3E%3Cpath d='M7 23 L13 16 L18 19 L25 9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">IPL Scoring Shift</a>
+    <nav>
+      <a href="index.html">← The story</a>
+      <a href="explore.html" class="active">Explore</a>
+    </nav>
+    <button class="theme-btn" type="button" aria-label="Switch color theme">Auto</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero" style="padding-bottom:0">
+    <h1 style="font-size:clamp(28px,5vw,44px)">Explore the data</h1>
+    <p class="lede">Pick a team, a ground or a player and compare them with the league, season by season. The dashed line marks 2023, the first Impact Player season.</p>
+  </section>
+
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" data-tab="teams">Teams</button>
+    <button role="tab" aria-selected="false" data-tab="venues">Grounds</button>
+    <button role="tab" aria-selected="false" data-tab="players">Players</button>
+  </div>
+
+  <!-- TEAMS -->
+  <div class="panel" id="panel-teams">
+    <div class="filters">
+      <label>Team <select id="team-select"></select></label>
+      <label>Measure <select id="team-metric"></select></label>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3 id="team-chart-title">Team vs league</h3>
+        <p class="sub">The team's value each season, with the league average for comparison</p>
+        <div class="chart" id="c-team"></div>
+      </div>
+      <div class="card">
+        <h3>Batting run rate by phase</h3>
+        <p class="sub">Runs per over in each phase for the selected team</p>
+        <div class="chart" id="c-team-phase"></div>
+      </div>
+    </div>
+    <div class="grid one">
+      <div class="card">
+        <h3 id="team-rank-title">All teams in one season</h3>
+        <div class="filters" style="margin:4px 0 0"><label>Season <select id="team-season"></select></label></div>
+        <div class="chart" id="c-team-rank"></div>
+      </div>
+      <div class="card">
+        <h3>Season by season</h3>
+        <div class="table-scroll" id="t-team"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VENUES -->
+  <div class="panel" id="panel-venues" hidden>
+    <div class="filters">
+      <label>Ground <select id="venue-select"></select></label>
+      <label>Measure <select id="venue-metric"></select></label>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3 id="venue-chart-title">Ground vs league</h3>
+        <p class="sub">Seasons with at least 3 matches at the ground</p>
+        <div class="chart" id="c-venue"></div>
+      </div>
+      <div class="card">
+        <h3>Season by season</h3>
+        <div class="table-scroll" id="t-venue"></div>
+      </div>
+    </div>
+    <div class="grid one">
+      <div class="card">
+        <h3 id="venue-rank-title">Ground ranking</h3>
+        <div class="filters" style="margin:4px 0 0">
+          <label>Period <select id="venue-period"></select></label>
+        </div>
+        <p class="sub">Grounds with 8+ matches in the period</p>
+        <div class="chart tall" id="c-venue-rank"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLAYERS -->
+  <div class="panel" id="panel-players" hidden>
+    <div class="filters">
+      <label>Discipline
+        <select id="player-mode"><option value="bat">Batting</option><option value="bowl">Bowling</option></select>
+      </label>
+      <label>Player <input id="player-input" list="player-list" placeholder="Type a name, e.g. V Kohli" autocomplete="off"></label>
+      <datalist id="player-list"></datalist>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3 id="player-a-title">Runs per season</h3>
+        <p class="sub" id="player-a-sub"></p>
+        <div class="chart" id="c-player-a"></div>
+      </div>
+      <div class="card">
+        <h3 id="player-b-title">Strike rate per season</h3>
+        <p class="sub" id="player-b-sub"></p>
+        <div class="chart" id="c-player-b"></div>
+      </div>
+    </div>
+    <div class="grid one">
+      <div class="card">
+        <h3 id="player-table-title">Career by season</h3>
+        <div class="table-scroll" id="t-player"></div>
+      </div>
+      <div class="card">
+        <h3>Leaderboard</h3>
+        <div class="filters" style="margin:4px 0 8px">
+          <label>Season <select id="lb-season"></select></label>
+          <label>Minimum balls <select id="lb-min"><option>60</option><option selected>120</option><option>200</option><option>300</option></select></label>
+        </div>
+        <p class="sub">Click a column to sort. Click a name to load that player above.</p>
+        <div class="table-scroll" id="t-leader"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">Data: <a href="https://cricsheet.org/">Cricsheet</a>. Renamed franchises are merged under their current names. Player names follow Cricsheet spelling (initials + surname).</div>
+</footer>
+
+<script src="assets/vendor/echarts.min.js"></script>
+<script src="assets/charts.js"></script>
+<script src="assets/explore.js"></script>
+</body>
+</html>

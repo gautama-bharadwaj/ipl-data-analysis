@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IPL Scoring Shift</title>
+  <meta name="description" content="How IPL batting changed from 2008 to 2026: when totals jumped, where in the innings, and which theories hold up in the ball-by-ball data.">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a78d6'/%3E%3Cpath d='M7 23 L13 16 L18 19 L25 9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">IPL Scoring Shift</a>
+    <nav>
+      <a href="#jump">The jump</a>
+      <a href="#when">When</a>
+      <a href="#where">Where</a>
+      <a href="#pitches">Pitches</a>
+      <a href="#ropes">Boundaries</a>
+      <a href="#mindset">Mindset</a>
+      <a href="#impact">Impact Player</a>
+      <a href="#verdict">Verdict</a>
+      <a href="explore.html">Explore →</a>
+    </nav>
+    <button class="theme-btn" type="button" aria-label="Switch color theme">Auto</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>180 used to win games.<br>Now 220 might not.</h1>
+    <p class="lede">Every ball of every IPL match from 2008 to 2026: <span id="n-balls">295,000</span> deliveries across <span id="n-matches">1,243</span> matches, to find out what changed in IPL batting, when it changed, and why.</p>
+    <div class="tiles" id="hero-tiles"></div>
+  </section>
+
+  <!-- 1. THE JUMP -->
+  <section class="chapter" id="jump">
+    <div class="kicker">1 · The jump</div>
+    <h2>Totals were flat for 15 years, then rose about 25 runs in four seasons</h2>
+    <p>From 2008 to 2022 the average first-innings total stayed between 150 and 172. Then it rose to 183 in 2023, 190 in 2024, and close to 196 by 2026. <strong>200 used to be an outlier. It is now roughly the median.</strong></p>
+    <div class="grid">
+      <div class="card">
+        <h3>Average first-innings total</h3>
+        <p class="sub">Full-length matches only (no rain-shortened games)</p>
+        <div class="chart" id="c-first-innings"></div>
+      </div>
+      <div class="card">
+        <h3>How often teams batting first pass 200 and 220</h3>
+        <p class="sub">Share of first innings, % per season</p>
+        <div class="chart" id="c-200"></div>
+      </div>
+      <div class="card">
+        <h3>The whole spread moved, not just the top end</h3>
+        <p class="sub">First-innings totals: box = middle 50%, whiskers = 5th to 95th percentile</p>
+        <div class="chart" id="c-totals-box"></div>
+      </div>
+      <div class="card">
+        <h3>Distribution of first-innings totals by era</h3>
+        <p class="sub">% of innings in each 10-run band</p>
+        <div class="chart" id="c-totals-hist"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. WHEN -->
+  <section class="chapter" id="when">
+    <div class="kicker">2 · When did it change?</div>
+    <h2>The data points to one break, and it's 2023</h2>
+    <p>We fit a simple "before vs after" model to the run rate of every full-length innings and tried every possible break season. <strong>The best fit is a break at <span id="break-season">2023</span></strong>, with the run rate going from <span id="rr-before">8.1</span> to <span id="rr-after">9.5</span> runs per over. Earlier changes (2014, 2018, 2022) show up as small bumps, but none of them lasted.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Run rate by season, with the best-fit break</h3>
+        <p class="sub">Runs per over, both innings, full-length matches</p>
+        <div class="chart" id="c-rr-break"></div>
+      </div>
+      <div class="card">
+        <h3>How well each break year explains the data</h3>
+        <p class="sub">Reduction in unexplained variance (%) if the break is placed in that season</p>
+        <div class="chart" id="c-fit"></div>
+      </div>
+    </div>
+    <ul class="timeline">
+      <li><span class="yr">2014</span><span class="what">First part of the season played in the <b>UAE</b>.</span></li>
+      <li><span class="yr">2020</span><span class="what">Whole season in the <b>UAE</b> (COVID). 2021 was split between India and the UAE.</span></li>
+      <li><span class="yr">2022</span><span class="what">League grows to <b>10 teams</b>. The league stage was played at four venues in Maharashtra.</span></li>
+      <li><span class="yr">2023</span><span class="what"><b>Impact Player rule</b> introduced: each side can swap in a 12th player during the match. Teams also return to playing at their home grounds.</span></li>
+      <li><span class="yr">2024</span><span class="what">Bowlers allowed <b>two bouncers per over</b>.</span></li>
+      <li><span class="yr">2025</span><span class="what">Saliva ban on the ball lifted, and an option to change the ball in evening games because of dew.</span></li>
+    </ul>
+  </section>
+
+  <!-- 3. WHERE -->
+  <section class="chapter" id="where">
+    <div class="kicker">3 · Where in the innings?</div>
+    <h2>Every phase got faster, but the powerplay changed the most</h2>
+    <p>Death overs have always been fast. The new part is the start of the innings: the powerplay went from about 7.8 runs an over in 2022 to over 10 in 2026. Teams no longer "build" for the first six overs.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Run rate by phase</h3>
+        <p class="sub">Powerplay = overs 1–6, Middle = 7–15, Death = 16–20</p>
+        <div class="chart" id="c-phase"></div>
+      </div>
+      <div class="card">
+        <h3>Over-by-over run rate, by era</h3>
+        <p class="sub">The 2023–26 line sits above earlier eras in every over</p>
+        <div class="chart" id="c-overs-era"></div>
+      </div>
+    </div>
+    <div class="grid one">
+      <div class="card">
+        <h3>Run rate heatmap: every over of every season</h3>
+        <p class="sub">Darker = more runs per over. Watch the top rows (recent seasons) get darker from the very first over.</p>
+        <div class="chart tall" id="c-overs-heat"></div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>Sixes and fours per match</h3>
+        <p class="sub">Both teams combined</p>
+        <div class="chart" id="c-sixes"></div>
+      </div>
+      <div class="card">
+        <h3>Share of runs that come from boundaries</h3>
+        <p class="sub">% of all runs scored in fours and sixes</p>
+        <div class="chart" id="c-boundary-share"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THEORY 1 -->
+  <section class="chapter" id="pitches">
+    <div class="kicker">Theory 1 · Pitches became more batter friendly</div>
+    <h2>Batting really did get easier, not just riskier</h2>
+    <p>If teams were only taking more risks, they would score faster but get out more often. Instead, <strong>runs per wicket went up too</strong>, from about 27 in 2020–22 to over 31 in 2026. Wickets in the powerplay barely moved, so the new ball isn't doing much less than before. Every major ground scored more after 2023, including slow ones like Chepauk.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Runs per wicket (league batting average)</h3>
+        <p class="sub">Higher = each wicket costs the bowling side more runs</p>
+        <div class="chart" id="c-rpw"></div>
+      </div>
+      <div class="card">
+        <h3>Powerplay wickets per innings</h3>
+        <p class="sub">A proxy for how much the new ball does</p>
+        <div class="chart" id="c-ppw"></div>
+      </div>
+      <div class="card">
+        <h3>Same ground, before and after 2023</h3>
+        <p class="sub">Average first-innings total, 2018–22 vs 2023–26 (grounds with 6+ games in each period)</p>
+        <div class="chart" id="c-same-ground"></div>
+      </div>
+      <div class="card">
+        <h3>Season effect after controlling for venue</h3>
+        <p class="sub">Run rate vs 2008, raw and after removing which grounds were used. Without the venue control, 2020–21 (UAE) look lower than they were.</p>
+        <div class="chart" id="c-venue-adj"></div>
+      </div>
+    </div>
+    <div class="grid one">
+      <div class="card">
+        <h3>Run rate at each major ground, season by season</h3>
+        <p class="sub">Grounds with 25+ full-length matches. Blank = no games that season.</p>
+        <div class="chart tall" id="c-venue-heat"></div>
+      </div>
+    </div>
+    <div class="verdict partial"><span class="badge">Partly supported</span><p>Conditions do look easier: average and strike rate both rose, and at every ground. But the jump happened all at once in 2023 at every venue, which looks more like a rule change than pitches slowly changing. This data can't separate the surface from the batters playing on it.</p></div>
+  </section>
+
+  <!-- THEORY 2 -->
+  <section class="chapter" id="ropes">
+    <div class="kicker">Theory 2 · Boundary lines got shorter</div>
+    <h2>Sixes went up everywhere, even at the biggest grounds</h2>
+    <p>Cricsheet doesn't record boundary sizes, so this can't be measured directly. What we can see is where sixes come from. If ropes had moved in, you'd expect a jump at the grounds where it happened. Instead, sixes per match rose at every major ground at the same time, big or small. The sixes-to-fours ratio has been climbing steadily since 2014, not in one jump.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Sixes per match at each ground, by era</h3>
+        <p class="sub">Grounds with games in at least three eras</p>
+        <div class="chart tall" id="c-venue-sixes"></div>
+      </div>
+      <div class="card">
+        <h3>Sixes hit for every four</h3>
+        <p class="sub">0.33 = one six per three fours; 0.61 = nearly two per three</p>
+        <div class="chart" id="c-six-ratio"></div>
+        <h3 style="margin-top:12px">Balls per six</h3>
+        <p class="sub">Legal deliveries between sixes</p>
+        <div class="chart short" id="c-balls-six"></div>
+      </div>
+    </div>
+    <div class="verdict weak"><span class="badge">Can't test directly</span><p>No rope-length data exists in this dataset. The pattern (sixes up at every ground, big or small, and a steady rise since 2014) fits better with harder hitting than with shorter boundaries. Shorter ropes may still add a little, but they don't explain the 2023 jump.</p></div>
+  </section>
+
+  <!-- THEORY 3 -->
+  <section class="chapter" id="mindset">
+    <div class="kicker">Theory 3 · A more attacking batting mindset</div>
+    <h2>Batters now go hard from the first ball</h2>
+    <p>The clearest change is in the <strong>first 10 balls of a batter's innings</strong>. Batters used to start slowly and accelerate later. From 2008 to 2022, the strike rate over a batter's first 10 balls was about 100–120. By 2026 it's <strong>141</strong>, higher than most settled batters managed in the early years. The share of regular batters (100+ balls in a season) striking at 150 or more was never much above 1 in 5 before 2023. By 2026 it's 3 in 5.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Strike rate: first 10 balls vs after 20 balls</h3>
+        <p class="sub">How fast batters start and how fast they go once set</p>
+        <div class="chart" id="c-first10"></div>
+      </div>
+      <div class="card">
+        <h3>Batters striking at 150+</h3>
+        <p class="sub">% of batters with 100+ balls in the season</p>
+        <div class="chart" id="c-sr150"></div>
+      </div>
+      <div class="card">
+        <h3>Spread of strike rates among regular batters</h3>
+        <p class="sub">Bands: 10th to 90th and 25th to 75th percentile; line = median. Batters with 100+ balls.</p>
+        <div class="chart" id="c-sr-dist"></div>
+      </div>
+      <div class="card">
+        <h3>Risk vs reward, season by season</h3>
+        <p class="sub">Batting strike rate vs runs per wicket. Up and to the right = faster and safer.</p>
+        <div class="chart" id="c-risk"></div>
+      </div>
+    </div>
+    <div class="verdict strong"><span class="badge">Supported</span><p>The mindset shifted, and it's the main way the extra runs are scored. It had been building slowly since about 2014, then sped up sharply in 2023, the same year as the Impact Player rule. That timing suggests the rule is what gave batters licence to attack.</p></div>
+  </section>
+
+  <!-- THEORY 4 -->
+  <section class="chapter" id="impact">
+    <div class="kicker">Theory 4 · The Impact Player rule</div>
+    <h2>The rule changed behaviour more than the batting line-up</h2>
+    <p>The rule lets a side add a specialist batter when chasing, or a bowler after batting first, so teams effectively bat one player deeper. Surprisingly, <strong>No. 8 doesn't come in to bat much more often than before</strong>, and from 2025 it happens less. What changed is how the top order bats knowing that cover is there: <strong>openers and No. 3 went from a strike rate of 133 in 2022 to 167 in 2026</strong>, and the biggest gains in run rate come when teams have lost three wickets or fewer.</p>
+    <div class="grid one">
+      <div class="card">
+        <h3>Three seasons before vs every season since</h3>
+        <p class="sub">2020–22 average vs 2023–26 average</p>
+        <div class="table-scroll" id="t-before-after"></div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <h3>Strike rate by batting position</h3>
+        <p class="sub">The top order made the biggest jump after 2023</p>
+        <div class="chart" id="c-pos-sr"></div>
+      </div>
+      <div class="card">
+        <h3>Run rate by wickets already lost (overs 7–20)</h3>
+        <p class="sub">Teams score faster at every stage, but the biggest gain is with 0–3 wickets down</p>
+        <div class="chart" id="c-wk-down"></div>
+      </div>
+      <div class="card">
+        <h3>How deep do innings go?</h3>
+        <p class="sub">% of innings where No. 8 batted, and % of innings that ended all out</p>
+        <div class="chart" id="c-depth"></div>
+      </div>
+      <div class="card">
+        <h3>What the Impact Player actually did</h3>
+        <p class="sub">Number of substitutes per season by what they did in the match</p>
+        <div class="chart" id="c-sub-roles"></div>
+      </div>
+      <div class="card">
+        <h3>Chasing 200+</h3>
+        <p class="sub">Chases of a target over 200: attempted vs won</p>
+        <div class="chart" id="c-chases"></div>
+      </div>
+      <div class="card">
+        <h3>Most-used Impact Players</h3>
+        <p class="sub">Times used as the substitute, 2023–26</p>
+        <div class="table-scroll" id="t-top-subs"></div>
+      </div>
+    </div>
+    <div class="verdict strong"><span class="badge">Strongly supported</span><p>The break in the data lands exactly on 2023, and every batting measure jumps that year. But the rule mostly works as <em>insurance</em>: the extra batter rarely bats. Knowing there's one more batter to come is what lets the top order attack from ball one.</p></div>
+  </section>
+
+  <!-- VERDICT -->
+  <section class="chapter" id="verdict">
+    <div class="kicker">Verdict</div>
+    <h2>What changed, and when</h2>
+    <div class="conclusion prose">
+      <p><strong>When:</strong> one clear break in 2023, with smaller rises continuing through 2024–26. Before that, 2008–2022 was mostly flat with a few seasons that came and went (2014, 2018, 2022).</p>
+      <p><strong>Where:</strong> every phase, but especially the powerplay, which went from about 7.8 to 10 runs an over.</p>
+      <p><strong>How:</strong> more sixes (about 13 a match to over 19), fewer dot balls, and batters attacking from their first ball.</p>
+      <p><strong>Why:</strong> the Impact Player rule is the most likely trigger, working through behaviour (insurance) rather than an extra batter actually batting. An attacking mindset, already building since about 2014, is how it shows up. Easier batting conditions are part of the picture, since averages rose as well. Boundary size can't be tested with this data, and the six data doesn't point to it.</p>
+    </div>
+    <div class="callout">Want to dig into one team, ground or player? <a href="explore.html">Open the explorer →</a></div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    Data: ball-by-ball match files from <a href="https://cricsheet.org/">Cricsheet</a> (<span id="date-range">2008–2026</span>). Totals comparisons use full-length matches only. Renamed franchises are merged under their current names (e.g. Delhi Daredevils → Delhi Capitals). Built with Apache ECharts. Source and scripts on <a href="https://github.com/gautama-bharadwaj/ipl-data-analysis">GitHub</a>.
+  </div>
+</footer>
+
+<script src="assets/vendor/echarts.min.js"></script>
+<script src="assets/charts.js"></script>
+<script src="assets/story.js"></script>
+</body>
+</html>
