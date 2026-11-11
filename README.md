@@ -38,8 +38,6 @@ Online: https://gautama-bharadwaj.github.io/ipl-data-analysis/
 
 Locally: `cd docs && python -m http.server`, then open http://localhost:8000.
 
-On GitHub Pages: in **Settings → Pages**, set **Source** to **GitHub Actions**. The `Deploy site to GitHub Pages` workflow publishes `docs/` on every push to `main` that touches it. To pull in a new season, run the `Refresh data from Cricsheet` workflow from the Actions tab. It downloads the data, rebuilds everything, commits, and redeploys.
-
 ## Older script
 
 `scripts/json_to_csv.py` is the original match-level converter and writes `dataset/csv/matches.csv`. The new pipeline above replaces it.
