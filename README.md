@@ -1,9 +1,13 @@
 # IPL data analysis: how T20 batting changed
 
+### 👉 [View the site: gautama-bharadwaj.github.io/ipl-data-analysis](https://gautama-bharadwaj.github.io/ipl-data-analysis/)
+
+No setup needed, it opens in your browser. Jump straight to [the story](https://gautama-bharadwaj.github.io/ipl-data-analysis/) or [the explorer](https://gautama-bharadwaj.github.io/ipl-data-analysis/explore.html).
+
 A few years ago 180 was a good IPL total. Now 210–220 often isn't enough. This project uses ball-by-ball data for every IPL match from 2008 to 2026 to find out **what changed, when it changed, and why**, and publishes the results as a GitHub Pages site with lots of interactive charts.
 
-- **The story** (`docs/index.html`): the jump in totals, when it happened (a change-point test points to 2023), where in the innings it happened, and a verdict on four theories: flatter pitches, shorter boundaries, a more attacking mindset, and the Impact Player rule.
-- **The explorer** (`docs/explore.html`): compare any team, ground or player with the league, season by season, plus sortable leaderboards.
+- **[The story](https://gautama-bharadwaj.github.io/ipl-data-analysis/)** (`docs/index.html`): the jump in totals, when it happened (a change-point test points to 2023), where in the innings it happened, and a verdict on four theories: flatter pitches, shorter boundaries, a more attacking mindset, and the Impact Player rule.
+- **[The explorer](https://gautama-bharadwaj.github.io/ipl-data-analysis/explore.html)** (`docs/explore.html`): compare any team, ground or player with the league, season by season, plus sortable leaderboards.
 
 ## Data
 
@@ -29,6 +33,8 @@ python scripts/build_site_data.py   # analysis -> docs/data/*.json
 Renamed franchises are merged under their current names (Delhi Daredevils → Delhi Capitals, Kings XI Punjab → Punjab Kings, Royal Challengers Bangalore → Bengaluru). Venue spellings are merged into one name per ground. Comparisons of totals use full-length matches only.
 
 ## Viewing the site
+
+Online: https://gautama-bharadwaj.github.io/ipl-data-analysis/
 
 Locally: `cd docs && python -m http.server`, then open http://localhost:8000.
 
